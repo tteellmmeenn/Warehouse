@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бараа Засах</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Бараа Засах</h1>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="sku">SKU</label>
+                <input type="text" class="form-control" id="sku" name="sku" value="{{ item.sku }}" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Нэр</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ item.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Тоо</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ item.quantity }}" required min="1">
+            </div>
+            <div class="form-group">
+                <label for="location">Байршил</label>
+                <input type="text" class="form-control" id="location" name="location" value="{{ item.location }}" required>
+            </div>
+            <div class="form-group">
+                <label for="brand">Брэнд</label>
+                <input type="text" class="form-control" id="brand" name="brand" value="{{ item.brand }}">
+            </div>
+            <div class="form-group">
+                <label for="model_no">Загварын дугаар</label>
+                <input type="text" class="form-control" id="model_no" name="model_no" value="{{ item.model_no }}">
+            </div>
+            <div class="form-group">
+                <label for="price">Үнэ</label>
+                <input type="number" class="form-control" id="price" name="price" value="{{ item.price }}" required min="0.01" step="any">
+            </div>
+            <div class="form-group">
+                <label for="warranty">Баталгаат хугацаа</label>
+                <input type="text" class="form-control" id="warranty" name="warranty" value="{{ item.warranty }}">
+            </div>
+            <button type="submit" class="btn btn-warning">Засах</button>
+            <a href="{{ url_for('web_view') }}" class="btn btn-secondary">Буцах</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

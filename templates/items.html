@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бараа Жагсаалт</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Бараа Жагсаалт</h1>
+
+        <!-- Хайлт хийх хэсэг -->
+        <form method="POST" action="/items" class="form-inline mb-4">
+            <input type="text" class="form-control mr-2" name="search" placeholder="Хайлт хийх..." value="{{ search_query }}">
+            <button type="submit" class="btn btn-primary">Хайх</button>
+        </form>
+
+        <!-- Хайлтын үр дүн -->
+        <a href="/items/new" class="btn btn-success mb-4">Шинэ бараа нэмэх</a>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-warning">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Бараа жагсаалт -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>SKU</th>
+                    <th>Нэр</th>
+                    <th>Тоо</th>
+                    <th>Үнэ</th>
+                    <th>Үйлдэл</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.sku }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price }}</td>
+                       <td>
+    <a href="/items/{{ item.id }}/edit" class="btn btn-warning btn-sm">Засах</a>
+    <form action="{{ url_for('delete_item_web', item_id=item.id) }}" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Та энэ барааг устгахдаа итгэлтэй байна уу?')">Устгах</button>
+    </form>
+</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
